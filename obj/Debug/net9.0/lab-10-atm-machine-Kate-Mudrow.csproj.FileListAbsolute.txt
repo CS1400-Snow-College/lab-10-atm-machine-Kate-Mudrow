@@ -1,0 +1,15 @@
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\bin\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.exe
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\bin\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.deps.json
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\bin\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.runtimeconfig.json
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\bin\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.dll
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\bin\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.pdb
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.AssemblyInfoInputs.cache
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.AssemblyInfo.cs
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.csproj.CoreCompileInputs.cache
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.sourcelink.json
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.dll
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\refint\lab-10-atm-machine-Kate-Mudrow.dll
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.pdb
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\lab-10-atm-machine-Kate-Mudrow.genruntimeconfig.cache
+C:\Users\katem\Desktop\code\my-code-dir\lab-10-atm-machine-Kate-Mudrow\obj\Debug\net9.0\ref\lab-10-atm-machine-Kate-Mudrow.dll
