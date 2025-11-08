@@ -6,22 +6,9 @@ Lab: Lab 10 ATM
 
 Console.Clear();
 
-List<(string username, int pin, decimal balance)> accounts = new();
-List<List<string>> transactionHistories = new();
+(List<(string username, int pin, decimal balance)> accounts, 
+List<List<string>> transactionHistories) = LoadBankCustomers();
 
-string[] bankData = File.ReadAllLines("bank.txt");
-
-for (int i = 1; i < bankData.Length; i++)
-{
-    string[] columns = bankData[i].Split(",");
-
-    string username = columns[0];
-    int pin = Convert.ToInt32(columns[1]);
-    decimal currentBalance = Convert.ToDecimal(columns[2]);
-
-    accounts.Add((username, pin, currentBalance));
-    transactionHistories.Add(new List<string>());
-}
 
 int attempts = 0;
 bool validLogIn = false;
@@ -38,30 +25,22 @@ do
     string pinInput = Console.ReadLine();
 
 
-    if (int.TryParse(pinInput, out int pinInputNumber))
+   if (ValidateUser(accounts, usernameInput, pinInput, out currentUser))
     {
-        foreach (var account in accounts)
-        {
-            if (account.username == usernameInput && account.pin == pinInputNumber)
-            {
-                Console.Clear();
-                Console.WriteLine("Login Successful");
-                validLogIn = true;
-                currentUser = account.username;
-                break;
-            }
-        }
-        if (!validLogIn)
-        {
-            Console.WriteLine("Invalid username or PIN.");
-            attempts++;
-        }
+        validLogIn = true;
+        Console.Clear();
+        Console.WriteLine("Login Successful");
+
+        successfulLogIn(accounts, transactionHistories, currentUser);
+            
+        saveBankCustomers(accounts);
+        break;
     }
     else
     {
-        Console.WriteLine("PIN must be a number.");
-        attempts++;
+    attempts++;
     }
+
     
 } while (attempts < 3 && !validLogIn);
 
@@ -71,7 +50,6 @@ do
     return;
     }
 
-successfulLogIn(accounts, transactionHistories, currentUser);
 
 
 static void successfulLogIn (List<(string username, int pin, decimal balance)> accounts, List<List<string>> transactionHistories, string username)
@@ -82,15 +60,15 @@ static void successfulLogIn (List<(string username, int pin, decimal balance)> a
     {
         string bankMenu = @$"
         ===Welcome {username}===
-    Please select what action you would like to do: 
+Please select what action you would like to do: 
 
-    1) Check Balance
-    2) Withdraw
-    3) Deposit
-    4) Display last 5 transactions
-    5) Quick Withdraw $40
-    6) Quick Withdraw $100
-    7) End current session
+1) Check Balance
+2) Withdraw
+3) Deposit
+4) Display last 5 transactions
+5) Quick Withdraw $40
+6) Quick Withdraw $100
+7) End current session
         ";
         Console.WriteLine(bankMenu);
 
@@ -133,6 +111,60 @@ static void successfulLogIn (List<(string username, int pin, decimal balance)> a
 
 
 // Methods
+
+static (List<(string username, int pin, decimal balance)> accounts, List<List<string>> transactionHistories) LoadBankCustomers()
+{
+    List<(string username, int pin, decimal balance)> accounts = new List<(string username, int pin, decimal balance)>();
+    List<List<string>> transactionHistories = new List<List<string>>();
+
+    string[] bankData = File.ReadAllLines("bank.txt");
+
+    for (int i = 1; i < bankData.Length; i++)
+    {
+        string[] columns = bankData[i].Split(",");
+
+        string username = columns[0];
+        int pin = Convert.ToInt32(columns[1]);
+        decimal currentBalance = Convert.ToDecimal(columns[2]);
+
+        accounts.Add((username, pin, currentBalance));
+        transactionHistories.Add(new List<string>());
+    }
+    return (accounts, transactionHistories);
+}
+
+
+static bool ValidateUser(List<(string username, int pin, decimal balance)> accounts, string usernameInput, string pinInput, out string currentUser)
+{
+    currentUser = ""; 
+
+    int pinInputNumber;
+    if (!int.TryParse(pinInput, out pinInputNumber))
+    {
+        Console.WriteLine("PIN must be a number.");
+        return false; 
+    }
+
+    for (int i = 0; i < accounts.Count; i++)
+    {
+        if (accounts[i].username == usernameInput && accounts[i].pin == pinInputNumber)
+        {
+            Console.Clear();
+            Console.WriteLine("Login Successful");
+            currentUser = accounts[i].username;
+            return true; 
+        }
+    }
+
+    Console.WriteLine("Invalid username or PIN.");
+    return false;
+}
+
+
+
+
+
+
 
 static void checkBalance(List<(string username, int pin, decimal balance)> accounts, string username)
 {
@@ -314,3 +346,15 @@ static void displayTransactions(List<(string username, int pin, decimal balance)
         }
     }
 
+static void saveBankCustomers(List<(string username, int pin, decimal balance)> accounts)
+{
+    string[] lines = new string[accounts.Count + 1];
+    lines[0] = "Username,Pin,Balance"; 
+
+    for (int i = 0; i < accounts.Count; i++)
+    {
+        lines[i + 1] = $"{accounts[i].username},{accounts[i].pin},{accounts[i].balance:F2}";
+    }
+
+    File.WriteAllLines("bank.txt", lines);
+}
